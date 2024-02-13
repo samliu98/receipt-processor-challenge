@@ -27,7 +27,7 @@ func TestProcessReceipt(t *testing.T) {
 	}
 
 	body, _ := json.Marshal(receipt)
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(body))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(body))
 	resp := httptest.NewRecorder()
 
 	r.ServeHTTP(resp, req)
@@ -57,7 +57,7 @@ func TestProcessReceipt_InvalidData(t *testing.T) {
 	}
 
 	body, _ := json.Marshal(receipt)
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(body))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(body))
 	resp := httptest.NewRecorder()
 
 	r.ServeHTTP(resp, req)
@@ -79,7 +79,7 @@ func TestProcessReceipt_UnbalancedTotal(t *testing.T) {
 	}
 
 	body, _ := json.Marshal(receipt)
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(body))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(body))
 	resp := httptest.NewRecorder()
 
 	r.ServeHTTP(resp, req)
@@ -101,7 +101,7 @@ func TestProcessReceipt_ZeroPrice(t *testing.T) {
 	}
 
 	body, _ := json.Marshal(receipt)
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(body))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(body))
 	resp := httptest.NewRecorder()
 
 	r.ServeHTTP(resp, req)
@@ -112,7 +112,7 @@ func TestProcessReceipt_ZeroPrice(t *testing.T) {
 func TestProcessReceipt_EmptyBody(t *testing.T) {
 	r := server.SetupRouter()
 
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", nil)
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", nil)
 	resp := httptest.NewRecorder()
 
 	r.ServeHTTP(resp, req)
@@ -124,7 +124,7 @@ func TestProcessReceipt_MalformedJson(t *testing.T) {
 	r := server.SetupRouter()
 
 	body := bytes.NewBuffer([]byte("{malformed json}"))
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", body)
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", body)
 	resp := httptest.NewRecorder()
 
 	r.ServeHTTP(resp, req)
@@ -148,7 +148,7 @@ func TestProcessReceipt_WrongPriceType(t *testing.T) {
 	}
 
 	body, _ := json.Marshal(receipt)
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(body))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(body))
 	resp := httptest.NewRecorder()
 
 	r.ServeHTTP(resp, req)
@@ -172,7 +172,7 @@ func TestGetPoints(t *testing.T) {
 	}
 	receiptJson, _ := json.Marshal(receipt)
 	// Create a new request to process the receipt
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(receiptJson))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(receiptJson))
 	req.Header.Set("Content-Type", "application/json")
 
 	// Record the response
@@ -229,7 +229,7 @@ func TestCalculatePoints_RoundTotal(t *testing.T) {
 	}
 	receiptJson, _ := json.Marshal(receipt)
 	// Create a new request to process the receipt
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(receiptJson))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(receiptJson))
 	req.Header.Set("Content-Type", "application/json")
 
 	// Record the response
@@ -279,7 +279,7 @@ func TestCalculatePoints_1(t *testing.T) {
 	}
 	receiptJson, _ := json.Marshal(receipt)
 	// Create a new request to process the receipt
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(receiptJson))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(receiptJson))
 	req.Header.Set("Content-Type", "application/json")
 
 	// Record the response
@@ -328,7 +328,7 @@ func TestCalculatePoints_2(t *testing.T) {
 	}
 	receiptJson, _ := json.Marshal(receipt)
 	// Create a new request to process the receipt
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(receiptJson))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(receiptJson))
 	req.Header.Set("Content-Type", "application/json")
 
 	// Record the response
@@ -377,7 +377,7 @@ func TestCalculatePoints_3(t *testing.T) {
 	}
 	receiptJson, _ := json.Marshal(receipt)
 	// Create a new request to process the receipt
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(receiptJson))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(receiptJson))
 	req.Header.Set("Content-Type", "application/json")
 
 	// Record the response
@@ -423,7 +423,7 @@ func TestCalculatePoints_ItemDescriptionMultipleOfThree(t *testing.T) {
 	}
 	receiptJson, _ := json.Marshal(receipt)
 	// Create a new request to process the receipt
-	req, _ := http.NewRequest(http.MethodPost, "/receipts/process", bytes.NewBuffer(receiptJson))
+	req, _ := http.NewRequest(http.MethodPost, "/receipts", bytes.NewBuffer(receiptJson))
 	req.Header.Set("Content-Type", "application/json")
 
 	// Record the response

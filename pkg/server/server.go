@@ -15,7 +15,7 @@ func SetupRoutes(r *gin.Engine, receiptController *controller.ReceiptController)
 			"message": "pong",
 		})
 	})
-	r.POST("/receipts/process", receiptController.SaveReciept)
+	r.POST("/receipts", receiptController.SaveReciept)
 	r.GET("/receipts/:id/points", receiptController.GetPoints)
 }
 
