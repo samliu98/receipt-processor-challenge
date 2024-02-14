@@ -10,13 +10,13 @@ Follow these steps to set up and run the application:
    With SSH URL
 
    ```bash
-   git clone git@github.com:sam9845/receipt-processor-challenge.git
+   git clone git@github.com:samliu98/receipt-processor-challenge.git
    ```
 
    With HTTP URL
 
    ```bash
-   git clone https://github.com/sam9845/receipt-processor-challenge.git
+   git clone https://github.com/samliu98/receipt-processor-challenge.git
    ```
 
 2. **Navigate to Repository**: Navigate to the repository folder.
